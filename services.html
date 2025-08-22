@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Services - SMBoost.hub</title>
+    <style>
+      body {
+        font-family: "Trebuchet MS", sans-serif;
+        background: #f4f4f4;
+        margin: 0;
+      }
+      .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+      }
+      h1 {
+        text-align: center;
+      }
+      form {
+        background: #f9f9f9;
+        padding: 15px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+      }
+      label,
+      select,
+      input,
+      button {
+        display: block;
+        width: 100%;
+        height: 40px;
+        margin-bottom: 10px;
+      }
+      button {
+        padding: 12px;
+        background: #fa6e11;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #fa6e11;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Order Services</h1>
+      <form id="serviceForm">
+        <label for="platform">Platform</label>
+        <select id="platform" required>
+          <option value="">-- Select platform --</option>
+          <option value="instagram">Instagram</option>
+          <option value="twitter">Twitter</option>
+          <option value="threads">Threads</option>
+          <option value="facebook">Facebook</option>
+          <option value="tiktok">TikTok</option>
+          <option value="youtube">YouTube</option>
+        </select>
+
+        <label for="service">Service</label>
+        <select id="service" required>
+          <option value="">-- Choose service --</option>
+        </select>
+
+        <label for="link">Profile/Post Link</label>
+        <input
+          type="text"
+          id="link"
+          placeholder="Enter link/username"
+          required
+        />
+
+        <label for="quantity">Quantity</label>
+        <input
+          type="number"
+          id="quantity"
+          placeholder="Enter quantity"
+          required
+        />
+
+        <button type="submit">Place Order</button>
+      </form>
+      <div id="result"></div>
+    </div>
+
+    <script>
+      const API_KEY = "YOUR_SMM_HEAVEN_API_KEY"; // Replace with your real key
+
+      const platformServices = {
+        instagram: { followers: 101, likes: 102, comments: 103, views: 104 },
+        twitter: { followers: 201, likes: 202, comments: 203, views: 204 },
+        threads: { followers: 301, likes: 302, comments: 303, views: 304 },
+        facebook: { followers: 401, likes: 402, comments: 403, views: 404 },
+        tiktok: { followers: 501, likes: 502, comments: 503, views: 504 },
+        youtube: { subscribers: 601, likes: 602, comments: 603, views: 604 },
+      };
+
+      const platformSelect = document.getElementById("platform");
+      const serviceSelect = document.getElementById("service");
+      const resultDiv = document.getElementById("result");
+
+      platformSelect.addEventListener("change", () => {
+        const platform = platformSelect.value;
+        serviceSelect.innerHTML =
+          '<option value="">-- Choose service --</option>';
+        if (!platform) return;
+
+        const services = platformServices[platform];
+        Object.entries(services).forEach(([name, id]) => {
+          const option = document.createElement("option");
+          option.value = id;
+          option.textContent = name.charAt(0).toUpperCase() + name.slice(1);
+          serviceSelect.appendChild(option);
+        });
+      });
+
+      document
+        .getElementById("serviceForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const service = serviceSelect.value;
+          const link = document.getElementById("link").value;
+          const quantity = document.getElementById("quantity").value;
+
+          resultDiv.innerHTML = "Placing order...";
+
+          const formData = new URLSearchParams();
+          formData.append("key", API_KEY);
+          formData.append("action", "add");
+          formData.append("service", service);
+          formData.append("link", link);
+          formData.append("quantity", quantity);
+
+          try {
+            const res = await fetch("https://smmheaven.com/api/v2", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: formData.toString(),
+            });
+            const data = await res.json();
+            if (data.order) {
+              resultDiv.innerHTML = `Success! Order ID: ${data.order}`;
+              // Store locally for orders.html
+              let orders = JSON.parse(localStorage.getItem("orders")) || [];
+              orders.push({
+                order_id: data.order,
+                service,
+                link,
+                quantity,
+                status: "Processing",
+                date: new Date().toLocaleString(),
+              });
+              localStorage.setItem("orders", JSON.stringify(orders));
+              document.getElementById("serviceForm").reset();
+            } else {
+              resultDiv.innerHTML = `Failed: ${JSON.stringify(data)}`;
+            }
+          } catch (error) {
+            resultDiv.innerHTML = `Error: ${error.message}`;
+          }
+        });
+    </script>
+  </body>
+</html>

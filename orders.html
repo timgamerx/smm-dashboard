@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orders - SocialBoost</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f9f9f9;
+        color: #333;
+      }
+      h1 {
+        text-align: center;
+        color: #fa6e11;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      th,
+      td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+      }
+      th {
+        background: #fa6e11;
+        color: white;
+      }
+      .back-btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background: #fa6e11;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+      .back-btn:hover {
+        background: #fa6e11;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Your Orders</h1>
+
+    <table id="ordersTable">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Service</th>
+          <th>Quantity</th>
+          <th>Status</th>
+          <th>Start Count</th>
+          <th>Remains</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="6">Loading orders...</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <a href="dashboard.html" class="back-btn">← Back to Dashboard</a>
+
+    <script>
+      const API_KEY = "ffcd43013a9bcba8055bbce71640b140"; // Replace with your real API key
+      const API_URL = "https://smm-heaven.com/api/v2"; // Base endpoint for the API
+
+      async function fetchOrders() {
+        try {
+          const response = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({
+              key: API_KEY,
+              action: "orders",
+            }),
+          });
+
+          const data = await response.json();
+          const tbody = document.querySelector("#ordersTable tbody");
+          tbody.innerHTML = "";
+
+          if (data && Array.isArray(data)) {
+            data.forEach((order) => {
+              const tr = document.createElement("tr");
+              tr.innerHTML = `
+              <td>${order.id}</td>
+              <td>${order.service}</td>
+              <td>${order.quantity}</td>
+              <td>${order.status}</td>
+              <td>${order.start_count}</td>
+              <td>${order.remains}</td>
+            `;
+              tbody.appendChild(tr);
+            });
+          } else {
+            tbody.innerHTML = `<tr><td colspan="6">No orders found.</td></tr>`;
+          }
+        } catch (error) {
+          console.error("Failed to fetch orders:", error);
+          document.querySelector(
+            "#ordersTable tbody"
+          ).innerHTML = `<tr><td colspan="6">Error loading orders.</td></tr>`;
+        }
+      }
+
+      // Fetch orders initially and refresh every 30 seconds
+      fetchOrders();
+      setInterval(fetchOrders, 30000);
+    </script>
+  </body>
+</html>

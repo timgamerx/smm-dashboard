@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log Out</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f8f8f8;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .modal {
+        background: #fff;
+        border-radius: 10px;
+        width: 350px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        display: none;
+      }
+
+      .modal.active {
+        display: block;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      h2 {
+        margin-bottom: 15px;
+      }
+
+      .buttons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .cancel-btn {
+        background: #ccc;
+      }
+
+      .logout-btn {
+        background: #d9534f;
+        color: white;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="modal active" id="logoutModal">
+      <h2>Confirm Log Out</h2>
+      <p>Are you sure you want to log out?</p>
+      <div class="buttons">
+        <button class="cancel-btn" onclick="cancelLogout()">Cancel</button>
+        <button class="logout-btn" onclick="confirmLogout()">Log Out</button>
+      </div>
+    </div>
+
+    <script>
+      function cancelLogout() {
+        window.location.href = "home.html"; // Redirect back to dashboard or home
+      }
+
+      function confirmLogout() {
+        alert("You have been logged out successfully.");
+        window.location.href = "index.html"; // Redirect to login or home page
+      }
+    </script>
+  </body>
+</html>

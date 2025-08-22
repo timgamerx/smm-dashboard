@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Funds - SMBoost.hub</title>
+    <style>
+      body {
+        font-family: "Trebuchet MS", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f8f8f8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .add-funds-container {
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+      }
+      .add-funds-container h2 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+      .input-group {
+        margin-bottom: 15px;
+        text-align: left;
+      }
+      .input-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: #555;
+      }
+      .input-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+      }
+      .payment-option {
+        background: #f1f1f1;
+        padding: 12px;
+        border-radius: 8px;
+        margin: 15px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+      .payment-option:hover {
+        background: #e8e8e8;
+      }
+      .payment-option img {
+        max-height: 24px;
+        margin-right: 10px;
+      }
+      button {
+        background: #4caf50;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        width: 100%;
+        transition: background 0.3s ease;
+      }
+      button:hover {
+        background: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="add-funds-container">
+      <h2>Add Funds</h2>
+      <form id="addFundsForm">
+        <div class="input-group">
+          <label for="amount">Amount (NGN)</label>
+          <input
+            type="number"
+            id="amount"
+            name="amount"
+            placeholder="Enter amount"
+            required
+          />
+        </div>
+        <div class="payment-option" id="flutterwaveOption">
+          <img src="assets/Flutterwave_Logo.png" alt="Flutterwave" />
+          <span>Pay with Flutterwave</span>
+        </div>
+        <button type="submit">Proceed to Payment</button>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("addFundsForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const amount = document.getElementById("amount").value;
+          if (amount > 0) {
+            alert(`Redirecting to Flutterwave for payment of NGN ${amount}`);
+            // Implement Flutterwave integration here
+          } else {
+            alert("Please enter a valid amount");
+          }
+        });
+    </script>
+  </body>
+</html>

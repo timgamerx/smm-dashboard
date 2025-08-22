@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SMBoost.hub</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Trebuchet MS", sans-serif;
+        background: #f9f9f9;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background: #fff;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+      }
+      header img {
+        max-width: 120px;
+      }
+      nav a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+      }
+      nav a:hover {
+        color: #ff8400;
+      }
+
+      /* HERO FIX */
+      .hero {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 60px 20px;
+        background-color: #fff;
+        gap: 50px;
+      }
+      .hero-text {
+        flex: 1;
+        max-width: 500px;
+      }
+      .hero-text h1 {
+        font-size: 2.5em;
+        line-height: 1.2;
+        margin-bottom: 20px;
+      }
+      .hero-text p {
+        margin-bottom: 20px;
+      }
+      .hero-text button {
+        padding: 12px 24px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1em;
+      }
+      .hero img {
+        flex: 1;
+        max-width: 400px;
+        width: 100%;
+        border-radius: 12px;
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+        }
+        .hero img {
+          max-width: 80%;
+          margin-top: 20px;
+        }
+      }
+
+      .services {
+        padding: 40px 20px;
+        background: #f4f4f4;
+        text-align: center;
+      }
+      .service-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+      }
+      .service-card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: #fff;
+        border-top: 1px solid #ddd;
+        margin-top: 20px;
+      }
+      footer a {
+        margin: 0 10px;
+        color: #333;
+        text-decoration: none;
+      }
+      footer a:hover {
+        color: #ff8400;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        width: 220px;
+        z-index: 1000;
+      }
+      .dropdown-menu a {
+        display: block;
+        text-decoration: none;
+        color: #333;
+        padding: 8px 12px;
+        border-radius: 4px;
+      }
+      .dropdown-menu a:hover {
+        background: #f0f0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="assets/COREL.png" alt="SMBoost Logo" />
+      <nav>
+        <a href="home.html">Home</a>
+        <a href="/services.html">Services</a>
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/addfunds.html">Add Funds</a>
+        <a href="#home-services">New Order</a>
+        <a href="/orders.html">Orders</a>
+        <a href="/howtoorder.html">How to Order</a>
+        <a href="javascript:void(0)" id="menu-toggle" aria-label="Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <rect y="4" width="24" height="2" rx="1" fill="#333" />
+            <rect y="11" width="24" height="2" rx="1" fill="#333" />
+            <rect y="18" width="24" height="2" rx="1" fill="#333" />
+          </svg>
+        </a>
+        <div class="dropdown-menu" id="dropdown-menu">
+          <a href="/affiliates.html">Affiliates</a>
+          <a href="/faqs.html">FAQs</a>
+          <a href="/about.html">About</a>
+          <a href="/support.html">Support</a>
+          <a href="/profile.html">Profile</a>
+          <a href="/logout.html">Log Out</a>
+        </div>
+      </nav>
+    </header>
+
+        <!-- HERO -->
+    <section id="home-hero" class="hero">
+      <div class="hero-text">
+        <h1>Boost your social media presence</h1>
+        <p>
+          SMBoost.hub helps you grow your influence with real engagement –
+          followers, likes, comments, and more across major platforms.
+        </p>
+        <button onclick="document.getElementById('home-services').scrollIntoView({ 
+            behavior: 'smooth' });">Explore our Services</button>
+      </div>
+      <img src="assets/image.png" alt="Social Media Boost" />
+    </section>
+
+  <body>
+      <section id="home-services" class="services">
+        <h2>Our Services</h2>
+        <div class="service-grid">
+          <div class="service-card">
+            <h3>Instagram</h3>
+            <p>Followers<br />Likes<br />Comments<br />Views</p>
+          </div>
+          <div class="service-card">
+            <h3>Twitter</h3>
+            <p>Followers<br />Likes<br />Comments<br />Views</p>
+          </div>
+          <div class="service-card">
+            <h3>Threads</h3>
+            <p>Followers<br />Likes<br />Comments<br />Views</p>
+          </div>
+          <div class="service-card">
+            <h3>Facebook</h3>
+            <p>Followers<br />Likes<br />Comments<br />Views</p>
+          </div>
+          <div class="service-card">
+            <h3>TikTok</h3>
+            <p>Followers<br />Likes<br />Comments<br />Views</p>
+          </div>
+          <div class="service-card">
+            <h3>YouTube</h3>
+            <p>Subscribers<br />Likes<br />Comments<br />Views</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+
+
+
+ <footer>
+     <form id="newsletter-form">
+            <input
+            type="email"
+            id="newsletter-email"
+            placeholder="Enter your email"
+            required
+            />
+            <button type="submit">Subscribe</button>
+        </form>
+
+      <p>
+        Follow us on:
+        </a>
+        <a href="https://x.com/smboost_hub" target="_blank"
+          ><i class="fab fa-twitter"></i
+        ></a>
+        </a>
+        <a href="https://youtube.com/@smboost_hub" target="_blank"
+          ><i class="fab fa-youtube"></i
+        ></a>
+      </p>
+      <p>&copy; 2025 SMBoost.hub All rights reserved.</p>
+
+      
+        <style>
+        #newsletter-form {
+            margin-top: 20px;
+        }
+        #newsletter-email {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 300px;
+        }
+        #newsletter-form button {
+            width: 100px;
+            height: 55px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #newsletter-form button:hover {
+            background-color: #555;
+        }
+        </style>
+    </footer>
+
+ <script>
+      const menuToggle = document.getElementById("menu-toggle");
+      const dropdownMenu = document.getElementById("dropdown-menu");
+      menuToggle.addEventListener("click", () => {
+        dropdownMenu.style.display =
+          dropdownMenu.style.display === "block" ? "none" : "block";
+      });
+      document.addEventListener("click", (e) => {
+        if (
+          !dropdownMenu.contains(e.target) &&
+          !menuToggle.contains(e.target)
+        ) {
+          dropdownMenu.style.display = "none";
+        }
+      });
+    </script>
+
+
+  </body>
+</html>

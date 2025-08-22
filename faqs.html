@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQs - SMBoost.hub</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: "Trebuchet MS", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f5f5f5;
+        color: #333;
+      }
+      header {
+        background: #fa6e11;
+        color: #fff;
+        padding: 15px 20px;
+        text-align: center;
+      }
+      .container {
+        width: 90%;
+        max-width: 1000px;
+        margin: 30px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        margin-top: 0;
+        text-align: center;
+      }
+      .faq-item {
+        border-bottom: 1px solid #ddd;
+        padding: 15px 0;
+      }
+      .faq-item:last-child {
+        border-bottom: none;
+      }
+      .faq-question {
+        font-weight: bold;
+        cursor: pointer;
+        position: relative;
+        padding-right: 20px;
+      }
+      .faq-answer {
+        display: none;
+        margin-top: 8px;
+        color: #555;
+      }
+      .faq-question::after {
+        content: "+";
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+      .faq-item.active .faq-answer {
+        display: block;
+      }
+      .faq-item.active .faq-question::after {
+        content: "-";
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>SMBoost.hub - Frequently Asked Questions</h1>
+    </header>
+
+    <div class="container">
+      <h2>FAQs</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">What is SMBoost.hub?</div>
+        <div class="faq-answer">
+          SMBoost.hub is a platform that allows you to boost your social media
+          engagement, followers, and reach using our secure and reliable tools.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How can I add funds to my account?</div>
+        <div class="faq-answer">
+          You can add funds through Flutterwave, our secure payment partner. Go
+          to the "Add Funds" section on your dashboard to get started.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Is my payment information secure?</div>
+        <div class="faq-answer">
+          Yes, all payments are processed through Flutterwave, which ensures
+          top-level security for all transactions.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          How long does it take for orders to process?
+        </div>
+        <div class="faq-answer">
+          Orders usually start processing within a few minutes after payment is
+          confirmed. Some services may take longer depending on the type of
+          request.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Can I become an affiliate?</div>
+        <div class="faq-answer">
+          Yes! Visit the Affiliates section on our site to learn how to sign up
+          and start earning commissions.
+        </div>
+      </div>
+    </div>
+
+    <section class="backtohome">
+      <a href="home.html" class="btn">Back to Home</a>
+    </section>
+    <style>
+      .backtohome {
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      .btn {
+        display: inline-block;
+        background: #fa6e11;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .btn:hover {
+        background: #e55b0e;
+      }
+    </style>
+
+    <script>
+      // FAQ Toggle
+      document.querySelectorAll(".faq-question").forEach((question) => {
+        question.addEventListener("click", () => {
+          question.parentElement.classList.toggle("active");
+        });
+      });
+    </script>
+  </body>
+</html>
